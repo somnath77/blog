@@ -1,8 +1,7 @@
 <h1><%= @article.title %></h1>
-
 <p><%= @article.body %></p>
 
-Our article has <%= Comment.public_count %> comments and counting!
+Our article has <%= Comment.public_count(@article.id) %> comments and counting!
 
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
@@ -16,7 +15,7 @@ Our article has <%= Comment.public_count %> comments and counting!
     <div>
     <%= comment.body %>-
     <%= comment.commenter %>
-    <%= link_to "Delete", article_path(@article),
+    <%= link_to "Delete", article_comment_path(comment.article, comment),
         method: :delete,
         data: { confirm: "Are you sure?" } 
     %>
@@ -25,4 +24,4 @@ Our article has <%= Comment.public_count %> comments and counting!
 
 
 <h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<%= render 'comments/form' %>   
